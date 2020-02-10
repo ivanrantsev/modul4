@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Button</button>
+    <div id="container"></div>
+<script>
+    document.querySelector('button').addEventListener('click', loadFile);
+    function loadFile() {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'ajax.html', true);
+        xhr.onload = function () {
+            document.querySelector('#container').innerHTML = this.responseText;
+        }
+        xhr.send();
+    }      
+</script>
+</body>
+</html>

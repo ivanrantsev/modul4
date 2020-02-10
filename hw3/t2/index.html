@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Button</button>
+    <div id="container"></div>
+<script>
+    document.querySelector('button').addEventListener('click', loadFile);
+
+    function loadFile() {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'users.json');
+        xhr.onload = function () {
+            let jsonData = JSON.parse(xhr.responseText);
+            renderContent(jsonData);
+        }
+        xhr.send();
+    }    
+    function renderContent(data) {
+        let ul = document.createElement('ul');
+        document.querySelector("#container").appendChild(ul);
+        for(i = 0; i < data.length; i++) {
+            let li = document.createElement('li');
+            li.innerText = data[i];
+            ul.appendChild(li);
+        }
+    }  
+</script>
+</body>
+</html>
